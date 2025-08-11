@@ -23,6 +23,10 @@ const Feed = () => {
     }
   };
 
+  if (feed.length === 0) {
+    return <p>No new feed availbale for you</p>;
+  }
+
   return (
     <div className="flex justify-center my-10">
       {feed.length && <UserCard user={feed[0]} />}

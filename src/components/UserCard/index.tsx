@@ -1,3 +1,7 @@
+import { removeUserFromFeed } from "../../features/Feed/feedSlice";
+import { useAppDispatch } from "../../hooks";
+import axiosInstance from "../../services/axiosInstance";
+
 interface CardPorps {
   user: {
     [key: string]: any;
@@ -6,7 +10,21 @@ interface CardPorps {
 }
 
 const UserCard = ({ user, showButton = true }: CardPorps) => {
-  const { firstName, lastName, age, gender, skills, about, photoUrl } = user;
+  const { _id, firstName, lastName, age, gender, about, photoUrl } = user;
+
+  const dispatch = useAppDispatch();
+
+  const sendConnectionReuqet = async (status: string, userId: string) => {
+    try {
+      const res = await axiosInstance.post(`request/send/${status}/${userId}`);
+      if (res.status === 200) {
+        dispatch(removeUserFromFeed(userId));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="card bg-base-400 w-96 shadow-sm">
       <figure>
@@ -24,8 +42,18 @@ const UserCard = ({ user, showButton = true }: CardPorps) => {
         <p>{about}</p>
         {showButton && (
           <div className="card-actions my-1 justify-center">
-            <button className="btn btn-primary">Ignore</button>
-            <button className="btn btn-secondary">Interested</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => sendConnectionReuqet("ignored", _id)}
+            >
+              Ignore
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => sendConnectionReuqet("interested", _id)}
+            >
+              Interested
+            </button>
           </div>
         )}
       </div>
