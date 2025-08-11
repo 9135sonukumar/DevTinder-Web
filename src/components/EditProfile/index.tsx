@@ -131,6 +131,7 @@ const EditProfile = ({ user }: Props) => {
           photoUrl: profile.photoUrl,
           about: profile.about,
         }}
+        showButton={false}
       />
       {toast && <Toast message={toast} onClose={() => setToast("")} />}
     </div>

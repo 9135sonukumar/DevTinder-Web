@@ -2,9 +2,10 @@ interface CardPorps {
   user: {
     [key: string]: any;
   };
+  showButton?: boolean;
 }
 
-const UserCard = ({ user }: CardPorps) => {
+const UserCard = ({ user, showButton = true }: CardPorps) => {
   const { firstName, lastName, age, gender, skills, about, photoUrl } = user;
   return (
     <div className="card bg-base-400 w-96 shadow-sm">
@@ -21,10 +22,12 @@ const UserCard = ({ user }: CardPorps) => {
           </p>
         )}
         <p>{about}</p>
-        <div className="card-actions my-1 justify-center">
-          <button className="btn btn-primary">Ignore</button>
-          <button className="btn btn-secondary">Interested</button>
-        </div>
+        {showButton && (
+          <div className="card-actions my-1 justify-center">
+            <button className="btn btn-primary">Ignore</button>
+            <button className="btn btn-secondary">Interested</button>
+          </div>
+        )}
       </div>
     </div>
   );
