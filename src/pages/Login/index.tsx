@@ -5,14 +5,18 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../services/axiosInstance";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState("sonu@gmail.com");
+  const [password, setPassword] = useState("Sonu@123");
+  const [error, setError] = useState("");
 
   const navigation = useNavigate();
 
   const dispatch = useAppDispatch();
 
   const login = async () => {
+    if (!emailId || !password) {
+      return setError("Email & password required");
+    }
     try {
       const res = await axiosInstance.post("login", { emailId, password });
       if (res.status === 200) {
@@ -20,7 +24,7 @@ const Login = () => {
         navigation("/feed");
       }
     } catch (error) {
-      console.log(error);
+      setError(error?.response?.data);
     }
   };
 
@@ -89,6 +93,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
+          <p className="text-red-500">{error}</p>
           <div className="card-actionsn my-4 flex justify-center">
             <button className="btn bg-[#E94579] text-white" onClick={login}>
               Login

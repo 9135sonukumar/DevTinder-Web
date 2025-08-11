@@ -1,8 +1,24 @@
-import { Link } from "react-router-dom";
-import { useAppSelector } from "../../hooks";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import axiosInstance from "../../services/axiosInstance";
+import { resetUser } from "../../features/Auth/authSlice";
 
 const Navbar = () => {
   const user = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogoout = async () => {
+    try {
+      const res = await axiosInstance.get("/logout");
+      if (res.status === 200) {
+        dispatch(resetUser());
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm">
       {/* <div className="flex-1">
@@ -45,7 +61,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={handleLogoout}>Logout</a>
               </li>
             </ul>
           </div>
