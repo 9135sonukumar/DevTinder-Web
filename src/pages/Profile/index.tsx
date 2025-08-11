@@ -1,7 +1,12 @@
+import EditProfile from "../../components/EditProfile";
+import { useAppSelector } from "../../hooks";
+
 const Profile = () => {
+  const user = useAppSelector((state) => state.auth);
+
   return (
-    <div className="">
-      <h1 className="text-3xl font-bold">Profile Page</h1>
+    <div className="flex justify-center">
+      <EditProfile user={user} />
     </div>
   );
 };
