@@ -17,8 +17,8 @@ const EditProfile = ({ user }: Props) => {
   const [profile, setProfile] = useState({
     firstName: user.firstName,
     lastName: user.lastName,
-    age: user.age,
-    gender: user.gender,
+    age: user.age ?? "",
+    gender: user.gender ?? "",
     photoUrl: user.photoUrl,
     about: user.about,
   });

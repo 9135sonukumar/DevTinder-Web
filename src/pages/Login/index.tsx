@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks";
 import { saveUser } from "../../features/Auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../services/axiosInstance";
 
 const Login = () => {
@@ -98,6 +98,11 @@ const Login = () => {
             <button className="btn bg-[#E94579] text-white" onClick={login}>
               Login
             </button>
+          </div>
+          <div className="flex justify-center">
+            <Link to="/signup" className="text-black">
+              New User? Sign Up here
+            </Link>
           </div>
         </div>
       </div>
