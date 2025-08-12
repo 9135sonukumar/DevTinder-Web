@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useAppDispatch } from "../../hooks";
 import { saveUser } from "../../features/Auth/authSlice";
@@ -7,7 +8,7 @@ import axiosInstance from "../../services/axiosInstance";
 const Login = () => {
   const [emailId, setEmailId] = useState("sonu@gmail.com");
   const [password, setPassword] = useState("Sonu@123");
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
 
   const navigation = useNavigate();
 
@@ -23,8 +24,8 @@ const Login = () => {
         dispatch(saveUser(res.data.data));
         navigation("/feed");
       }
-    } catch (error) {
-      setError(error?.response?.data);
+    } catch (error: any) {
+      setError(error?.response?.data ?? "Something went wrong");
     }
   };
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import TextInput from "../../components/TextInput";
 import { useAppDispatch } from "../../hooks";
@@ -35,7 +36,7 @@ const SignUp = () => {
         setError("");
         navigate("/profile");
       }
-    } catch (error) {
+    } catch (error: any) {
       setError(error.response.data);
     }
   };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../NavBar";
 import Footer from "../Footer";
@@ -15,7 +16,7 @@ const Body = () => {
       if (res.status === 200) {
         dispatch(saveUser(res.data));
       }
-    } catch (err) {
+    } catch (err: any) {
       if (err?.status === 401) {
         navigate("/login");
       }

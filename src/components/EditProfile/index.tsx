@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import TextInput from "../TextInput";
 import UserCard from "../UserCard";
@@ -59,7 +60,7 @@ const EditProfile = ({ user }: Props) => {
         dispatch(saveUser(res.data.data));
         setToast(res.data.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setError(error?.response?.data);
     }

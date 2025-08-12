@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 import { saveFeed } from "../../features/Feed/feedSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -6,7 +7,7 @@ import UserCard from "../../components/UserCard";
 
 const Feed = () => {
   const dispatch = useAppDispatch();
-  const feed = useAppSelector((state) => state.feed);
+  const feed: any = useAppSelector((state) => state.feed);
 
   useEffect(() => {
     getFeed();
