@@ -15,7 +15,7 @@ export default function Toast({ message, type = "success", onClose }: Props) {
   }, [onClose]);
 
   return (
-    <div className="toast toast-top toast-end my-15">
+    <div className="toast toast-top toast-center my-15">
       <div className={`alert alert-${type}`}>
         <span>{message}</span>
       </div>

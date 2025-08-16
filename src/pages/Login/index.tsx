@@ -4,34 +4,40 @@ import { useAppDispatch } from "../../hooks";
 import { saveUser } from "../../features/Auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../services/axiosInstance";
+import Loader from "../../components/Loader";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("sonu@gmail.com");
   const [password, setPassword] = useState("Sonu@123");
   const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
   const navigation = useNavigate();
 
   const dispatch = useAppDispatch();
 
   const login = async () => {
+    setError("");
     if (!emailId || !password) {
       return setError("Email & password required");
     }
+    setLoading(true);
     try {
       const res = await axiosInstance.post("login", { emailId, password });
       if (res.status === 200) {
         dispatch(saveUser(res.data.data));
-        navigation("/feed");
+        navigation("/feed", { replace: true });
       }
     } catch (error: any) {
       setError(error?.response?.data ?? "Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div
-      className="flex justify-center"
+      className="flex justify-center flex-col items-center h-screen bg-cover bg-center"
       style={{
         backgroundImage:
           "url('https://techcrunch.com/wp-content/uploads/2023/10/tinder-matchmaker.png')",
@@ -96,8 +102,12 @@ const Login = () => {
           </label>
           <p className="text-red-500">{error}</p>
           <div className="card-actionsn my-4 flex justify-center">
-            <button className="btn bg-[#E94579] text-white" onClick={login}>
-              Login
+            <button
+              disabled={loading}
+              className="btn bg-[#E94579] text-white w-1/2"
+              onClick={login}
+            >
+              {loading ? <Loader size="loading-md" color="#E94579" /> : "Login"}
             </button>
           </div>
           <div className="flex justify-center">

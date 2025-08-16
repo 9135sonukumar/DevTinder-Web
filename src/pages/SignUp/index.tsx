@@ -24,6 +24,7 @@ const SignUp = () => {
   const [toast, setToast] = useState("");
 
   const setProfileData = (key: string, value: string) => {
+    setError("");
     setProfile({ ...profile, [key]: value });
   };
 
@@ -42,9 +43,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="card bg-base-300 w-96 shadow-sm mx-5">
-        <div className="card-body">
+    <div className="flex justify-center items-center h-screen">
+      <div className="card bg-base-300 w-96 shadow-sm">
+        <div className="card-body flex flex-col items-center">
           <h2 className="card-title justify-center">DevTinder</h2>
           <TextInput
             lable="First Name"

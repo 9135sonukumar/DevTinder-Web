@@ -14,7 +14,7 @@ const TextInput = ({
 }: InputProps) => {
   const isInput = type === "input";
   return (
-    <div>
+    <div className="form-control w-full max-w-xs">
       <fieldset className="fieldset">
         {lable && <legend className="fieldset-legend">{lable}</legend>}
         {isInput ? (

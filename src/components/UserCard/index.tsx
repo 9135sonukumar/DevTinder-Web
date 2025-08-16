@@ -27,7 +27,7 @@ const UserCard = ({ user, showButton = true }: CardPorps) => {
 
   return (
     <div className="card bg-base-400 w-96 shadow-sm">
-      <figure>
+      <figure className="">
         <img src={photoUrl} alt="photo" className="w-dvh" />
       </figure>
       <div className="card-body">
@@ -39,7 +39,7 @@ const UserCard = ({ user, showButton = true }: CardPorps) => {
             {age}, {gender}
           </p>
         )}
-        <p>{about}</p>
+        <p className="line-clamp-4">{about}</p>
         {showButton && (
           <div className="card-actions my-1 justify-center">
             <button

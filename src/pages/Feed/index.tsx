@@ -25,7 +25,11 @@ const Feed = () => {
   };
 
   if (feed.length === 0) {
-    return <p>No new feed availbale for you</p>;
+    return (
+      <p className="text-center font-medium text-gray-600">
+        No new feed availbale for you
+      </p>
+    );
   }
 
   return (

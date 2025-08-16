@@ -69,7 +69,7 @@ const EditProfile = ({ user }: Props) => {
   return (
     <div className="flex">
       <div className="card bg-base-300 w-96 shadow-sm mx-5">
-        <div className="card-body">
+        <div className="card-body flex flex-col items-center">
           <h2 className="card-title justify-center">Edit Profile</h2>
           <TextInput
             lable="First Name"

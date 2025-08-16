@@ -7,7 +7,7 @@ interface Props {
 
 const Dropdown = ({ label, defaultValue, placeholder, onSelect }: Props) => {
   return (
-    <div>
+    <div className="form-control w-full max-w-xs">
       <fieldset className="fieldset">
         <legend className="fieldset-legend">{label}</legend>
         <select

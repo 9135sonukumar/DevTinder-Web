@@ -21,9 +21,6 @@ const Navbar = () => {
   };
   return (
     <div className="navbar bg-base-100 shadow-sm">
-      {/* <div className="flex-1">
-        <a className="btn btn-ghost text-xl"> 👩 DevTinder</a>
-      </div> */}
       <div className="flex-1">
         <Link to="/feed" className="btn btn-ghost text-xl">
           {/* <img
@@ -36,7 +33,7 @@ const Navbar = () => {
       </div>
       {user?.photoUrl && (
         <div className="flex gap-2 items-center">
-          <p>{`Welcome, ${user.firstName}`}</p>
+          <p className="font-medium">{`Welcome, ${user.firstName}`}</p>
           <div className="dropdown dropdown-end mx-5">
             <div
               tabIndex={0}
@@ -44,17 +41,16 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={user?.photoUrl} />
+                <img alt="photo" src={user?.photoUrl} />
               </div>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-medium"
             >
               <li>
                 <Link to={"/profile"} className="justify-between">
                   Profile
-                  <span className="badge">New</span>
                 </Link>
               </li>
               <li>
@@ -63,7 +59,7 @@ const Navbar = () => {
               <li>
                 <Link to="/requests">Requests</Link>
               </li>
-              <li>
+              <li className="text-red-500">
                 <a onClick={handleLogoout}>Logout</a>
               </li>
             </ul>

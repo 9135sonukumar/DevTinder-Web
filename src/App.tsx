@@ -15,10 +15,10 @@ function App() {
       <Provider store={store}>
         <BrowserRouter basename="/">
           <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/" element={<Body />}>
-              <Route path="/login" element={<Login />} />
               <Route path="/feed" element={<Feed />} />
-              <Route path="/signup" element={<SignUp />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/connections" element={<Connections />} />
               <Route path="/requests" element={<Requests />} />
